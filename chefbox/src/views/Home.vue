@@ -4,6 +4,7 @@
     <div class="header">
       <h1>House Atreides Chefbox</h1>
       <img src="../assets/images/HouseA_logo.png">
+      <p>Test</p>
     </div>
   </div>
 </template>
