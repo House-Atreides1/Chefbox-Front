@@ -2,7 +2,7 @@
 <!-- ------------------------ -->
 
 <template>
-  <div class="recipe-container">
+  <div class="cards-container">
 
     <div class="searchbar">
       <input type="text" placeholder="Find a recipe" v-model="search">
@@ -10,25 +10,25 @@
 
     
 
-    <!-- <template v-for="member in filteredMembers">
+    <template v-for="recipe in filteredRecipes">
 
-      <div class="member-container" :key="member.dob.date" v-on:click="setMemberProfile(member)">
+      <div class="recipe-container">
 
         <div class="pic">
-          <img v-bind:src="member.picture.thumbnail" alt="member pic">
+          <img v-bind:src="recipe.picture.thumbnail" alt="recipe pic">
         </div>
 
-        <div class="member-name">
-          <h2>{{ member.name.first }} {{ member.name.last }}</h2>
+        <div class="recipe-title">
+          <h2>{{ recipe.title }}</h2>
         </div>
 
-        <div class="member-age">
-          Age: {{ member.dob.age }}
+        <div class="recipe-description">
+          Age: {{ recipe.description }}
         </div>
 
       </div>
 
-    </template> -->
+    </template>
   </div>
 </template>
 
@@ -36,7 +36,7 @@
 
 <style scoped>
 
-.recipe-container {
+.cards-container {
   padding: 5px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -55,9 +55,9 @@ input {
   background: rgba(50, 50, 50, 0.2);
   border: 0px solid #dbdbdb;
 }
-.member-container {
+.recipe-container {
   display: grid;
-  grid-template-areas: "member-pic member-name member-age";
+  grid-template-areas: "recipe-pic recipe-title recipe-description";
   grid-template-columns: 48px 1fr auto;
   grid-column-gap: 15px;
   padding: 10px 15px;
@@ -66,15 +66,15 @@ input {
   background-color: white;
   border-radius: 5px;
 }
-.member-name {
+.recipe-title {
   text-align: left;
   align-self: center;
 }
-.member-age {
+.recipe-description {
   text-align: right;
   align-self: center;
 }
-.member-container:hover {
+.recipe-container:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 .pic {
