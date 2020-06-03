@@ -12,7 +12,7 @@
 
     <template v-for="recipe in filteredRecipes">
 
-      <div class="recipe-container">
+      <div class="recipe-container" :key="recipe.title" v-on:click="setRecipeCard(recipe)">
 
         <div class="pic">
           <img v-bind:src="recipe.picture.thumbnail" alt="recipe pic">
@@ -32,7 +32,45 @@
   </div>
 </template>
 
+<script>
+import RecipeStore from "../Store/RecipeStore";
+// @ is an alias to /src
+export default {
+  name: "recipes",
+    data() {
+      return {
+        recipes: [],
+        search: ""
+      }
+    },
+    methods: {
+      getRecipes() {
+        return fetch()
+          .then(response => response.json())
+          .then(json => {
+            this.recipes = json.results;
+          });
+      },
+      setRecipeCard(recipe) {
+        RecipeStore.methods.setRecipeToCard(recipe);
+        this.$router.push("card");
+      }
+    },
+    created() {
+      this.getRecipes();
+    },
+    computed: {
+      filteredRecipes() {
+        return this.recipes.filter((recipe) => {
+          const recipeName = recipe.title;
+          const s = this.search.toLowerCase();
+          return name.toLowerCase().includes(s);
+        });
+      }
+    }
 
+};
+</script>
 
 <style scoped>
 
